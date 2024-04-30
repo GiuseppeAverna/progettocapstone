@@ -1,16 +1,20 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MyNav from "./Components/MyNav";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
+import HomePage from "./Components/HomePage";
+import ProductPage from "./Components/ProductPage";
+import CartPage from "./Components/CartPage";
 
 function App() {
   return (
     <>
-      <header>
-        <MyNav />
-      </header>
-      <main></main>
-
-      <footer></footer>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<HomePage />} path="/" />
+          <Route element={<ProductPage />} path="/products" />
+          <Route element={<CartPage />} path="/cart" />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

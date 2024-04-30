@@ -1,7 +1,7 @@
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-const MyNav = () => {
+const ProductPage = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/">MyShop</Navbar.Brand>
@@ -18,4 +18,4 @@ const MyNav = () => {
   );
 };
 
-export default MyNav;
+export default ProductPage;
