@@ -10,13 +10,14 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import { InputGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ProductPage = () => {
   const products = [
     {
       id: 1,
       name: "Scarpe da corsa",
-      description: "Scarpe da corsa molto leggere e traspiranti",
+      description: "Scarpe da corsa molto leggere e traspiranti primo",
       price: 59.99,
       imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
     },
@@ -182,19 +183,16 @@ const ProductPage = () => {
       imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
     },
   ];
-
+  console.log(products);
   const [searchTerm, setSearchTerm] = useState("");
-
   const [minPrice, setMinPrice] = useState("");
-
   const [maxPrice, setMaxPrice] = useState("");
-
   const [showCarousel, setShowCarousel] = useState(true);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    setShowCarousel(term === "" && minPrice === "" && maxPrice === ""); // Imposta il flag di visualizzazione del carosello in base alla presenza del termine di ricerca
+    setShowCarousel(term === "" && minPrice === "" && maxPrice === "");
   };
 
   const handleMinPriceChange = (e) => {
@@ -292,7 +290,9 @@ const ProductPage = () => {
                               alt={product.name}
                             />
                             <Card.Body>
-                              <Card.Title>{product.name}</Card.Title>
+                              <Link to={`/products/${product.id}`}>
+                                <Card.Title>{product.name}</Card.Title>
+                              </Link>
                               <Card.Text>{product.description}</Card.Text>
                               <Card.Text>
                                 Prezzo: €{product.price.toFixed(2)}
@@ -321,6 +321,13 @@ const ProductPage = () => {
                       <Card.Title>{product.name}</Card.Title>
                       <Card.Text>{product.description}</Card.Text>
                       <Card.Text>Prezzo: €{product.price.toFixed(2)}</Card.Text>
+                      {/* Sostituisci ProductDetailPage con un link */}
+                      <Link
+                        to={`/products/${product.id}`}
+                        className="btn btn-primary"
+                      >
+                        Dettagli
+                      </Link>
                     </Card.Body>
                   </Card>
                 </div>
