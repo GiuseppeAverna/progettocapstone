@@ -1,7 +1,15 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import React from "react";
+import {
+  Container,
+  Navbar,
+  Nav,
+  Button,
+  ListGroup,
+  ListGroupItem,
+} from "react-bootstrap";
+import OrderSummary from "./OrderSummary";
 
-const CartPage = ({ cart, removeFromCart }) => {
+const CartPage = ({ cart, showAlert, removeFromCart }) => {
   const calculateTotal = () => {
     return cart.reduce(
       (total, product) => total + product.price * product.quantity,
@@ -24,28 +32,36 @@ const CartPage = ({ cart, removeFromCart }) => {
         </Navbar.Collapse>
       </Navbar>
 
-      <div className="container mt-4">
+      <Container className="mt-4">
         <h1>Carrello</h1>
         {cart.length === 0 ? (
           <p>Il carrello è vuoto</p>
         ) : (
           <>
-            <ul>
-              {cart.map((product) => (
-                <li key={product.id}>
-                  {product.name} - Prezzo: €
-                  {(product.price * product.quantity).toFixed(2)} (Quantità:{" "}
-                  {product.quantity}) {/* Visualizza la quantità */}
-                  <button onClick={() => removeFromCart(product.id)}>
-                    Rimuovi dal carrello
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <p>Totale: €{calculateTotal().toFixed(2)}</p>
+            <div className="d-flex">
+              <div className="mr-auto">
+                <ListGroup>
+                  {cart.map((product) => (
+                    <ListGroupItem key={product.id}>
+                      {product.name} - Prezzo: €
+                      {(product.price * product.quantity).toFixed(2)} (Quantità:{" "}
+                      {product.quantity}) {/* Visualizza la quantità */}
+                      <Button
+                        variant="danger"
+                        onClick={() => removeFromCart(product.id)}
+                      >
+                        Rimuovi dal carrello
+                      </Button>
+                    </ListGroupItem>
+                  ))}
+                </ListGroup>
+                <p>Totale: €{calculateTotal().toFixed(2)}</p>
+              </div>
+              <OrderSummary cart={cart} />
+            </div>
           </>
         )}
-      </div>
+      </Container>
     </>
   );
 };
