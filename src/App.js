@@ -12,7 +12,7 @@ function App() {
     {
       id: 1,
       name: "Scarpe da corsa",
-      description: "Scarpe da corsa molto leggere e traspiranti",
+      description: "Scarpe da corsa molto leggere e traspiranti primo",
       price: 59.99,
       imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
     },

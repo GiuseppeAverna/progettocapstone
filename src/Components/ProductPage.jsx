@@ -216,127 +216,152 @@ const ProductPage = () => {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/">MyShop</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/products">Products</Nav.Link>
-            <Nav.Link href="/cart">Cart</Nav.Link>
-            <Nav.Link href="/admin">Admin</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <div className="background-container"></div>
+      <div className="page-content productpage">
+        <Navbar className="navbar-custom justify-content-center" expand="sm">
+          <Container>
+            <Navbar.Brand className="text-white" href="/">
+              MyShop
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse
+              id="basic-navbar-nav"
+              className="justify-content-center"
+            >
+              <Nav className="ml-auto " style={{ gap: "50px" }}>
+                <Nav.Link className="text-white" href="/">
+                  Home
+                </Nav.Link>
+                <Nav.Link className="text-white" href="/products">
+                  Products
+                </Nav.Link>
+                <Nav.Link className="text-white" href="/cart">
+                  Cart
+                </Nav.Link>
+                <Nav.Link className="text-white" href="/admin">
+                  Admin
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        <Container className="mt-4">
+          <div className="mb-4"></div>
+          <Form>
+            <InputGroup className="mb-3">
+              <FormControl
+                placeholder="Cerca prodotti..."
+                aria-label="Cerca prodotti..."
+                aria-describedby="basic-addon1"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </InputGroup>
 
-      <Container className="mt-4">
-        <div className="mb-4"></div>{" "}
-        <Form>
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="Cerca prodotti..."
-              aria-label="Cerca prodotti..."
-              aria-describedby="basic-addon1"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </InputGroup>
+            <InputGroup className="mb-3">
+              <FormControl
+                placeholder="Prezzo minimo"
+                aria-label="Prezzo minimo"
+                aria-describedby="basic-addon2"
+                value={minPrice}
+                onChange={handleMinPriceChange}
+              />
+            </InputGroup>
 
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="Prezzo minimo"
-              aria-label="Prezzo minimo"
-              aria-describedby="basic-addon2"
-              value={minPrice}
-              onChange={handleMinPriceChange}
-            />
-          </InputGroup>
-
-          <InputGroup className="mb-3">
-            <FormControl
-              placeholder="Prezzo massimo"
-              aria-label="Prezzo massimo"
-              aria-describedby="basic-addon3"
-              value={maxPrice}
-              onChange={handleMaxPriceChange}
-            />
-          </InputGroup>
-        </Form>
-        {showCarousel ? (
-          <Carousel
-            interval={8000}
-            indicators={false}
-            prevIcon={
-              <span aria-hidden="true" className="carousel-control-prev-icon" />
-            }
-            nextIcon={
-              <span aria-hidden="true" className="carousel-control-next-icon" />
-            }
-            prevLabel=""
-            nextLabel=""
-          >
-            {[...Array(Math.ceil(products.length / 8))].map((_, index) => (
-              <Carousel.Item key={index}>
-                <div className="my-4 d-flex justify-content-center">
-                  <div className="d-flex flex-wrap">
-                    {products
-                      .slice(index * 8, (index + 1) * 8)
-                      .map((product) => (
-                        <div key={product.id} className="mx-2 mb-4">
-                          <Card style={{ width: "18rem" }}>
-                            <Card.Img
-                              variant="top"
-                              src={product.imageUrl}
-                              alt={product.name}
-                            />
-                            <Card.Body>
-                              <Link to={`/products/${product.id}`}>
-                                <Card.Title>{product.name}</Card.Title>
-                              </Link>
-                              <Card.Text>{product.description}</Card.Text>
-                              <Card.Text>
-                                Prezzo: €{product.price.toFixed(2)}
-                              </Card.Text>
-                            </Card.Body>
-                          </Card>
-                        </div>
-                      ))}
+            <InputGroup className="mb-3">
+              <FormControl
+                placeholder="Prezzo massimo"
+                aria-label="Prezzo massimo"
+                aria-describedby="basic-addon3"
+                value={maxPrice}
+                onChange={handleMaxPriceChange}
+              />
+            </InputGroup>
+          </Form>
+          {showCarousel ? (
+            <Carousel
+              interval={6000}
+              indicators={false}
+              prevIcon={
+                <span
+                  aria-hidden="true"
+                  className="carousel-control-prev-icon"
+                />
+              }
+              nextIcon={
+                <span
+                  aria-hidden="true"
+                  className="carousel-control-next-icon"
+                />
+              }
+              prevLabel=""
+              nextLabel=""
+            >
+              {[...Array(Math.ceil(products.length / 8))].map((_, index) => (
+                <Carousel.Item key={index}>
+                  <div className="my-4 d-flex justify-content-center">
+                    <div className="d-flex flex-wrap">
+                      {products
+                        .slice(index * 8, (index + 1) * 8)
+                        .map((product) => (
+                          <div key={product.id} className="mx-2 mb-4">
+                            <Card style={{ width: "18rem" }}>
+                              <Card.Img
+                                variant="top"
+                                src={product.imageUrl}
+                                alt={product.name}
+                              />
+                              <Card.Body>
+                                <Link to={`/products/${product.id}`}>
+                                  <Card.Title>{product.name}</Card.Title>
+                                </Link>
+                                <Card.Text>{product.description}</Card.Text>
+                                <Card.Text>
+                                  Prezzo: €{product.price.toFixed(2)}
+                                </Card.Text>
+                              </Card.Body>
+                            </Card>
+                          </div>
+                        ))}
+                    </div>
                   </div>
-                </div>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        ) : (
-          <div className="my-4 d-flex justify-content-center">
-            <div className="d-flex flex-wrap">
-              {filteredProducts.map((product) => (
-                <div key={product.id} className="mx-2 mb-4">
-                  <Card style={{ width: "18rem" }}>
-                    <Card.Img
-                      variant="top"
-                      src={product.imageUrl}
-                      alt={product.name}
-                    />
-                    <Card.Body>
-                      <Card.Title>{product.name}</Card.Title>
-                      <Card.Text>{product.description}</Card.Text>
-                      <Card.Text>Prezzo: €{product.price.toFixed(2)}</Card.Text>
-                      {/* Sostituisci ProductDetailPage con un link */}
-                      <Link
-                        to={`/products/${product.id}`}
-                        className="btn btn-primary"
-                      >
-                        Dettagli
-                      </Link>
-                    </Card.Body>
-                  </Card>
-                </div>
+                </Carousel.Item>
               ))}
+            </Carousel>
+          ) : (
+            <div className="my-4 d-flex justify-content-center">
+              <div className="d-flex flex-wrap">
+                {filteredProducts.map((product) => (
+                  <div key={product.id} className="mx-2 mb-4">
+                    <Card style={{ width: "18rem" }}>
+                      <Card.Img
+                        variant="top"
+                        src={product.imageUrl}
+                        alt={product.name}
+                      />
+                      <Card.Body>
+                        <Card.Title>{product.name}</Card.Title>
+                        <Card.Text>{product.description}</Card.Text>
+                        <Card.Text>
+                          Prezzo: €{product.price.toFixed(2)}
+                        </Card.Text>
+
+                        <Link
+                          to={`/products/${product.id}`}
+                          className="btn btn-primary"
+                        >
+                          Dettagli
+                        </Link>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-      </Container>
-      <Footer />
+          )}
+        </Container>
+        <Footer />
+      </div>
     </>
   );
 };

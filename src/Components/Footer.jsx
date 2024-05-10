@@ -6,13 +6,11 @@ import Col from "react-bootstrap/Col";
 
 const Footer = () => {
   return (
-    <footer className="footer mt-auto py-3 bg-light">
+    <footer className="footer-custom py-3">
       <Container>
         <Row>
           <Col>
-            <p className="text-muted mb-0">
-              MyShop - Tutti i diritti riservati
-            </p>
+            <p className="mb-0">MyShop - Tutti i diritti riservati</p>
           </Col>
         </Row>
       </Container>
