@@ -1,10 +1,5 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Footer from "./Footer";
 import Carousel from "react-bootstrap/Carousel";
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
@@ -13,181 +8,17 @@ import { InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ProductPage = () => {
-  const products = [
-    {
-      id: 1,
-      name: "Scarpe da corsa",
-      description: "Scarpe da corsa molto leggere e traspiranti primo",
-      price: 59.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
-    },
-    {
-      id: 2,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 3,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 4,
-      name: "Scarpe da corsa",
-      description: "Scarpe da corsa leggere e traspiranti",
-      price: 59.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
-    },
-    {
-      id: 5,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 6,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 7,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 8,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 9,
-      name: "Scarpe da corsa",
-      description: "Scarpe da corsa molto leggere e traspiranti",
-      price: 69.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
-    },
-    {
-      id: 10,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 11,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 12,
-      name: "Scarpe da corsa",
-      description: "Scarpe da corsa leggere e traspiranti",
-      price: 59.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
-    },
-    {
-      id: 13,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 14,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 15,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 16,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 17,
-      name: "Scarpe da corsa",
-      description: "Scarpe da corsa molto leggere e traspiranti",
-      price: 79.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
-    },
-    {
-      id: 18,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 19,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 20,
-      name: "Scarpe da corsa",
-      description: "Scarpe da corsa leggere e traspiranti",
-      price: 59.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
-    },
-    {
-      id: 21,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 22,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-    {
-      id: 23,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 24,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-  ];
-  console.log(products);
+  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [showCarousel, setShowCarousel] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -213,42 +44,13 @@ const ProductPage = () => {
       (minPrice === "" || product.price >= parseFloat(minPrice)) &&
       (maxPrice === "" || product.price <= parseFloat(maxPrice))
   );
-
   return (
     <>
-      <div className="background-container"></div>
       <div className="page-content productpage">
-        <Navbar className="navbar-custom justify-content-center" expand="sm">
-          <Container>
-            <Navbar.Brand className="text-white" href="/">
-              MyShop
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-center"
-            >
-              <Nav className="ml-auto " style={{ gap: "50px" }}>
-                <Nav.Link className="text-white" href="/">
-                  Home
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/products">
-                  Products
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/cart">
-                  Cart
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/admin">
-                  Admin
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-        <Container className="mt-4">
+        <Container>
           <div className="mb-4"></div>
-          <Form>
-            <InputGroup className="mb-3">
+          <Form className="products-form">
+            <InputGroup>
               <FormControl
                 placeholder="Cerca prodotti..."
                 aria-label="Cerca prodotti..."
@@ -258,8 +60,9 @@ const ProductPage = () => {
               />
             </InputGroup>
 
-            <InputGroup className="mb-3">
+            <InputGroup>
               <FormControl
+                type="number"
                 placeholder="Prezzo minimo"
                 aria-label="Prezzo minimo"
                 aria-describedby="basic-addon2"
@@ -268,8 +71,9 @@ const ProductPage = () => {
               />
             </InputGroup>
 
-            <InputGroup className="mb-3">
+            <InputGroup>
               <FormControl
+                type="number"
                 placeholder="Prezzo massimo"
                 aria-label="Prezzo massimo"
                 aria-describedby="basic-addon3"
@@ -300,7 +104,7 @@ const ProductPage = () => {
               {[...Array(Math.ceil(products.length / 8))].map((_, index) => (
                 <Carousel.Item key={index}>
                   <div className="my-4 d-flex justify-content-center">
-                    <div className="d-flex flex-wrap">
+                    <div className="d-flex flex-wrap justify-content-center">
                       {products
                         .slice(index * 8, (index + 1) * 8)
                         .map((product) => (
@@ -360,7 +164,6 @@ const ProductPage = () => {
             </div>
           )}
         </Container>
-        <Footer />
       </div>
     </>
   );

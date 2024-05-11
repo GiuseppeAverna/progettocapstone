@@ -1,54 +1,42 @@
-import React from "react";
-import {
-  Container,
-  Navbar,
-  Nav,
-  Button,
-  ListGroup,
-  ListGroupItem,
-} from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import OrderSummary from "./OrderSummary";
-import Footer from "./Footer";
 
-const CartPage = ({ cart, showAlert, removeFromCart }) => {
+const CartPage = () => {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/cart")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setCart(data))
+      .catch((error) => {
+        console.error("Problema con la fetch ", error);
+      });
+  }, []);
+
+  const removeFromCart = (productId) => {
+    fetch(`http://localhost:3001/cart/${productId}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => setCart(data));
+  };
+
   const calculateTotal = () => {
     return cart.reduce(
       (total, product) => total + product.price * product.quantity,
       0
     );
   };
-
   return (
     <>
-      <div className="background-container"></div>
       <div className="page-content cartpage">
-        <Navbar className="navbar-custom justify-content-center" expand="sm">
-          <Container>
-            <Navbar.Brand className="text-white" href="/">
-              MyShop
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-center"
-            >
-              <Nav className="ml-auto " style={{ gap: "50px" }}>
-                <Nav.Link className="text-white" href="/">
-                  Home
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/products">
-                  Products
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/cart">
-                  Cart
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/admin">
-                  Admin
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
         <Container className="mt-4">
           <h1>Carrello</h1>
           {cart.length === 0 ? (
@@ -61,9 +49,10 @@ const CartPage = ({ cart, showAlert, removeFromCart }) => {
                     {cart.map((product) => (
                       <ListGroupItem key={product.id}>
                         {product.name} - Prezzo: €
-                        {(product.price * product.quantity).toFixed(2)}{" "}
-                        (Quantità: {product.quantity}){" "}
-                        {/* Visualizza la quantità */}
+                        {product.price && product.quantity
+                          ? (product.price * product.quantity).toFixed(2)
+                          : "N/A"}
+                        (Quantità: {product.quantity || "N/A"})
                         <Button
                           variant="danger"
                           onClick={() => removeFromCart(product.id)}
@@ -81,7 +70,6 @@ const CartPage = ({ cart, showAlert, removeFromCart }) => {
           )}
         </Container>
       </div>
-      <Footer />
     </>
   );
 };

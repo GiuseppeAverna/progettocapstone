@@ -1,13 +1,30 @@
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Button, Form } from "react-bootstrap";
 import { Row, Col, Card } from "react-bootstrap";
 import "./style.css";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
+import Header from "./Header";
 
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3001/products")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const firstThreeProducts = data.slice(0, 3);
+        setProducts(firstThreeProducts);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation: ", error);
+      });
+  }, []);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -75,63 +92,9 @@ const HomePage = () => {
         );
       });
   };
-
-  const products = [
-    {
-      id: 1,
-      name: "Scarpe da corsa",
-      description: "Scarpe da corsa molto leggere e traspiranti primo",
-      price: 59.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Scarpe+da+corsa",
-    },
-    {
-      id: 2,
-      name: "Pallone da calcio",
-      description: "Pallone da calcio ufficiale per partite di campionato",
-      price: 29.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Pallone+da+calcio",
-    },
-    {
-      id: 3,
-      name: "Maglia da basket",
-      description: "Maglia da basket professionale con design aerodinamico",
-      price: 39.99,
-      imageUrl: "https://via.placeholder.com/300x200?text=Maglia+da+basket",
-    },
-  ];
-
   return (
     <>
-      <div className="background-container"></div>
       <div className="page-content homepage">
-        <Navbar className="navbar-custom justify-content-center" expand="sm">
-          <Container>
-            <Navbar.Brand className="text-white" href="/">
-              MyShop
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse
-              id="basic-navbar-nav"
-              className="justify-content-center"
-            >
-              <Nav className="ml-auto " style={{ gap: "50px" }}>
-                <Nav.Link className="text-white" href="/">
-                  Home
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/products">
-                  Products
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/cart">
-                  Cart
-                </Nav.Link>
-                <Nav.Link className="text-white" href="/admin">
-                  Admin
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-
         <section id="about-us" className="my-5 ">
           <Container>
             <h2 className="text-center">Chi Siamo</h2>
@@ -212,7 +175,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
