@@ -3,8 +3,6 @@ import { Container, Button, Form } from "react-bootstrap";
 import { Row, Col, Card } from "react-bootstrap";
 import "./style.css";
 import { Link } from "react-router-dom";
-import Footer from "./Footer";
-import Header from "./Header";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);

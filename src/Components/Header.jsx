@@ -18,26 +18,26 @@ const Header = () => {
             className="justify-content-center"
           >
             <Nav className="ml-auto " style={{ gap: "50px" }}>
-              <NavLink className="text-white" activeClassName="active" to="/">
+              <NavLink className="text-white" activeclassname="active" to="/">
                 Home
               </NavLink>
               <NavLink
                 className="text-white"
-                activeClassName="active"
+                activeclassname="active"
                 to="/products"
               >
                 Products
               </NavLink>
               <NavLink
                 className="text-white"
-                activeClassName="active"
+                activeclassname="active"
                 to="/cart"
               >
                 Cart
               </NavLink>
               {/* <NavLink
                 className="text-white"
-                activeClassName="active"
+                activeclassname="active"
                 to="/admin"
               >
                 Admin

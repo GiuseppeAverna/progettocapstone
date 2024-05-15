@@ -8,6 +8,7 @@ import ProductDetailPage from "./Components/ProductDetailPage";
 import { useState, useEffect } from "react";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
+import ChatSupport from "./Components/ChatSupport";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -31,6 +32,7 @@ function App() {
       <div className="wallpaper" />
       <div className="website-container">
         <Header />
+        <ChatSupport />
         <Routes>
           <Route element={<HomePage />} path="/" />
           <Route
