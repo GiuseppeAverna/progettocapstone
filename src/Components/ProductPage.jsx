@@ -7,6 +7,29 @@ import FormControl from "react-bootstrap/FormControl";
 import { InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+const Description = ({ text }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const words = text.split(" ");
+  const isLong = words.length > 12;
+
+  const displayText =
+    isExpanded || !isLong ? text : words.slice(0, 14).join(" ") + "...";
+
+  return (
+    <div>
+      {displayText}
+      {isLong && (
+        <span
+          className="expand-collapse-link"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {isExpanded ? "Riduci" : "Estendi"}
+        </span>
+      )}
+    </div>
+  );
+};
+
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,6 +67,7 @@ const ProductPage = () => {
       (minPrice === "" || product.price >= parseFloat(minPrice)) &&
       (maxPrice === "" || product.price <= parseFloat(maxPrice))
   );
+
   return (
     <>
       <div className="page-content productpage">
@@ -119,7 +143,7 @@ const ProductPage = () => {
                                 <Link to={`/products/${product.id}`}>
                                   <Card.Title>{product.name}</Card.Title>
                                 </Link>
-                                <Card.Text>{product.description}</Card.Text>
+                                <Description text={product.description || ""} />
                                 <Card.Text>
                                   Prezzo: €{product.price.toFixed(2)}
                                 </Card.Text>
@@ -145,7 +169,7 @@ const ProductPage = () => {
                       />
                       <Card.Body>
                         <Card.Title>{product.name}</Card.Title>
-                        <Card.Text>{product.description}</Card.Text>
+                        <Description text={product.description || ""} />
                         <Card.Text>
                           Prezzo: €{product.price.toFixed(2)}
                         </Card.Text>

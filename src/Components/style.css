@@ -121,6 +121,12 @@
     text-decoration: none;
     
   }
+  .expand-collapse-link {
+    color: rgb(16, 115, 203);
+    float: right;
+    cursor: pointer;
+  }
+  
  
   
   
@@ -156,7 +162,7 @@
 
 .active {
   border-bottom: 2px solid white;
-  /* pointer-events: none; */
+  
 }
 
 .products-form {
@@ -168,6 +174,7 @@
   
 
 /* chat  */
+
 .chat-button {
   position: fixed;
   bottom: 20px;
@@ -179,22 +186,14 @@
 
 .chat-modal .modal-dialog {
   position: fixed;
-  bottom: 10vh; /* Imposta la posizione in basso al 5% dell'altezza della viewport */
-  right: 4vw; /* Imposta la posizione a destra al 5% della larghezza della viewport */
+  bottom: 20px; /* Imposta la posizione in basso al 5% dell'altezza della viewport */
+  right: 20px; /* Imposta la posizione a destra al 5% della larghezza della viewport */
   width: 50vw; 
   max-width: 300px; 
-  height: 50vh; 
-  max-height: 500px; 
+  /* height: 50vh;  */
+  max-height: 500px;
   margin: 0;
 }
-
-/* Il resto del tuo CSS... */
-
-
-
-
-
-
 
 .chat-modal .modal-content {
   background-color: rgba(255, 255, 255, 0.521); 
@@ -232,24 +231,24 @@
 }
 .chat-messages {
   overflow-y: auto;
-  max-height: 400px; /* Scegli l'altezza che preferisci */
+  max-height: 400px; 
 }
-/* Personalizza la scrollbar */
+/* scrollbar chat */
 .chat-messages::-webkit-scrollbar {
   width: 10px;
 }
 
 .chat-messages::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.521); /* Colore dello sfondo della scrollbar */
+  background: rgba(255, 255, 255, 0.521); 
 }
 
 .chat-messages::-webkit-scrollbar-thumb {
-  background: #888; /* Colore della scrollbar */
-  border-radius: 5px; /* Rende la scrollbar arrotondata */
+  background: #888; 
+  border-radius: 5px; 
 }
 
 .chat-messages::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Colore della scrollbar quando si passa il mouse sopra */
+  background: #555; 
 }
 .submit-button {
   background-color:rgb(16, 115, 203) ;
@@ -264,22 +263,18 @@
 
 
 
-
-
-
-
-/* Personalizza la scrollbar */
+/* scrollbar sito */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; /* Rende lo sfondo della scrollbar trasparente */
+  background: transparent; 
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #555; /* Colore della scrollbar */
-  border-radius: 5px; /* Rende la scrollbar arrotondata */
+  background: #555; 
+  border-radius: 5px; 
 }
 
 
