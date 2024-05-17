@@ -7,7 +7,7 @@ const CartPage = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/cart")
+    fetch("http://localhost:3001/carts")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
