@@ -11,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) navigate("/login");
-    fetch("http://localhost:3001/products", {
+    fetch("http://localhost:3001/products?page=1&pageSize=3", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -25,8 +25,7 @@ const HomePage = () => {
         return response.json();
       })
       .then((data) => {
-        const firstThreeProducts = data.slice(0, 3);
-        setProducts(firstThreeProducts);
+        setProducts(data.content);
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation: ", error);
