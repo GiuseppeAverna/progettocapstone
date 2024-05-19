@@ -5,7 +5,8 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import { InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 const Description = ({ text }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -31,6 +32,7 @@ const Description = ({ text }) => {
 };
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState("");
@@ -38,9 +40,17 @@ const ProductPage = () => {
   const [showCarousel, setShowCarousel] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) navigate("/login");
+    fetch("http://localhost:3001/products", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+    })
       .then((response) => response.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data.content));
   }, []);
 
   const handleSearchChange = (e) => {
@@ -70,6 +80,7 @@ const ProductPage = () => {
 
   return (
     <>
+      <Header />
       <div className="page-content productpage">
         <Container>
           <div className="mb-4"></div>

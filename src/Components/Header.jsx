@@ -18,7 +18,11 @@ const Header = () => {
             className="justify-content-center"
           >
             <Nav className="ml-auto " style={{ gap: "50px" }}>
-              <NavLink className="text-white" activeclassname="active" to="/">
+              <NavLink
+                className="text-white"
+                activeclassname="active"
+                to="/home"
+              >
                 Home
               </NavLink>
               <NavLink
@@ -39,7 +43,12 @@ const Header = () => {
                 className="text-white"
                 activeclassname="active"
                 to="/login"
-                onClick={() => localStorage.removeItem("accessToken")}
+                onClick={() => {
+                  localStorage.removeItem("accessToken");
+                  localStorage.removeItem("userId");
+                  localStorage.removeItem("name");
+                  localStorage.removeItem("surname");
+                }}
               >
                 Logout
               </NavLink>

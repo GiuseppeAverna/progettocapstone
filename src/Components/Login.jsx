@@ -39,7 +39,29 @@ const Login = () => {
       .then((data) => {
         const { accessToken } = JSON.parse(data);
         localStorage.setItem("accessToken", accessToken);
-        navigate("/home");
+
+        fetch("http://localhost:3001/users/me", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + accessToken,
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                "Errore durante il recupero delle informazioni personali."
+              );
+            }
+            return response.text();
+          })
+          .then((data) => {
+            const user = JSON.parse(data);
+            localStorage.setItem("userId", user.id);
+            localStorage.setItem("name", user.name);
+            localStorage.setItem("surname", user.surname);
+            navigate("/home");
+          });
       })
       .catch((error) => {
         console.error(

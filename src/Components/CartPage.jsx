@@ -2,19 +2,30 @@ import React, { useState, useEffect } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { Container, Button } from "react-bootstrap";
 import OrderSummary from "./OrderSummary";
+import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/carts")
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) navigate("/login");
+    fetch("http://localhost:3001/users/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
       })
-      .then((data) => setCart(data))
+      .then((data) => setCart(data.cart))
       .catch((error) => {
         console.error("Problema con la fetch ", error);
       });
@@ -29,13 +40,11 @@ const CartPage = () => {
   };
 
   const calculateTotal = () => {
-    return cart.reduce(
-      (total, product) => total + product.price * product.quantity,
-      0
-    );
+    return cart.reduce((total, product) => total + product.price, 0);
   };
   return (
     <>
+      <Header />
       <div className="page-content cartpage">
         <Container className="mt-4">
           <h1>Carrello</h1>
@@ -48,11 +57,7 @@ const CartPage = () => {
                   <ListGroup>
                     {cart.map((product) => (
                       <ListGroupItem key={product.id}>
-                        {product.name} - Prezzo: €
-                        {product.price && product.quantity
-                          ? (product.price * product.quantity).toFixed(2)
-                          : "N/A"}
-                        (Quantità: {product.quantity || "N/A"})
+                        {product.name} - Prezzo: € {product.price}
                         <Button
                           variant="danger"
                           onClick={() => removeFromCart(product.id)}
