@@ -1,13 +1,23 @@
 import { useState, useEffect } from "react";
-import { Container, Button, Form } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { Row, Col, Card } from "react-bootstrap";
 import "./style.css";
-import { Link } from "react-router-dom";
+import Header from "./Header";
+import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3001/products")
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) navigate("/login");
+    fetch("http://localhost:3001/products", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -23,75 +33,9 @@ const HomePage = () => {
       });
   }, []);
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:3001/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          if (response.status === 400) {
-            throw new Error("Hai già effettuato l'accesso con questa email.");
-          }
-          throw new Error("Credenziali non valide!");
-        }
-        return response.text();
-      })
-      .then((data) => {
-        console.log(data);
-        alert("Login effettuato!");
-      })
-      .catch((error) => {
-        console.error(
-          "Si è verificato un errore durante il login:",
-          error.message
-        );
-        alert(error.message);
-      });
-  };
-
-  const handleLogout = () => {
-    fetch("http://localhost:3001/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Errore durante il logout!");
-        }
-        return response.text();
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error(
-          "Si è verificato un errore durante il logout:",
-          error.message
-        );
-      });
-  };
   return (
     <>
+      <Header />
       <div className="page-content homepage">
         <section id="about-us" className="my-5 ">
           <Container>
@@ -132,46 +76,6 @@ const HomePage = () => {
             </Row>
           </Container>
         </section>
-
-        <div className="login-page">
-          <div className="login-form ">
-            <h2>Login</h2>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="email">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <div className="button-group">
-                <Button variant="primary" type="submit">
-                  Login
-                </Button>
-                <Button
-                  variant="danger"
-                  className="mt-3"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </Button>
-              </div>
-            </Form>
-          </div>
-        </div>
       </div>
     </>
   );

@@ -64,14 +64,16 @@
   
   .login-form {
     width: 50%;
-    max-width: 500px;
-    margin-top: -200px; 
   }
   
   .button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+  }
+
+  .form-field{
+    color: black;
   }
 
 
@@ -126,11 +128,6 @@
     float: right;
     cursor: pointer;
   }
-  
-
-
-
-
 
   /* PRODUCT DETAIL PAGE */
   

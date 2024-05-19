@@ -35,13 +35,14 @@ const Header = () => {
               >
                 Cart
               </NavLink>
-              {/* <NavLink
+              <NavLink
                 className="text-white"
                 activeclassname="active"
-                to="/admin"
+                to="/login"
+                onClick={() => localStorage.removeItem("accessToken")}
               >
-                Admin
-              </NavLink> */}
+                Logout
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>
