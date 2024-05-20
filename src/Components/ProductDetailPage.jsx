@@ -40,7 +40,7 @@ const ProductDetailPage = () => {
     const accessToken = localStorage.getItem("accessToken");
     const userId = localStorage.getItem("userId");
     if (!accessToken || !userId) navigate("/login");
-    fetch("http://localhost:3001/users/" + userId + "/cart/" + product.id, {
+    fetch(`http://localhost:3001/users/${userId}/addToCart/${productId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const ProductDetailPage = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(() => {
         alert("Prodotto aggiunto al carrello!");
       });
   };

@@ -32,11 +32,17 @@ const CartPage = () => {
   }, []);
 
   const removeFromCart = (productId) => {
-    fetch(`http://localhost:3001/cart/${productId}`, {
-      method: "DELETE",
+    const accessToken = localStorage.getItem("accessToken");
+    const userId = localStorage.getItem("userId");
+    fetch(`http://localhost:3001/users/${userId}/removeFromCart/${productId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
     })
       .then((response) => response.json())
-      .then((data) => setCart(data));
+      .then((data) => setCart(data.cart));
   };
 
   return (
@@ -53,7 +59,7 @@ const CartPage = () => {
                 <div className="mr-auto">
                   <ListGroup>
                     {cart.map((product) => (
-                      <ListGroupItem key={product.id}>
+                      <ListGroupItem key={Math.random()}>
                         {product.name} - Prezzo: € {product.price}
                         <Button
                           variant="danger"
