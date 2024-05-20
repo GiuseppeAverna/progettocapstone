@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button, Alert, Card } from "react-bootstrap";
+import { Button, Alert, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const OrderSummary = ({ cart }) => {
   const [orderStatus, setOrderStatus] = useState("");
@@ -53,20 +54,18 @@ const OrderSummary = ({ cart }) => {
   }, [orderStatus]);
 
   return (
-    <Container className="mt-4 ml-auto">
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Riepilogo ordine</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Totale: €{calculateTotal().toFixed(2)}
-          </Card.Subtitle>
-          <Button variant="primary" onClick={handlePay} disabled={loading}>
-            {loading ? "Pagamento in corso..." : "Paga"}
-          </Button>
-          {orderStatus && <Alert variant="info">{orderStatus}</Alert>}
-        </Card.Body>
-      </Card>
-    </Container>
+    <Card>
+      <Card.Body>
+        <Card.Title>Riepilogo ordine</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          Totale: €{calculateTotal().toFixed(2)}
+        </Card.Subtitle>
+        <Button variant="primary" onClick={handlePay} disabled={loading}>
+          {loading ? "Pagamento in corso..." : "Paga"}
+        </Button>
+        {orderStatus && <Alert variant="info">{orderStatus}</Alert>}
+      </Card.Body>
+    </Card>
   );
 };
 

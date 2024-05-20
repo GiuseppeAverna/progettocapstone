@@ -11,7 +11,7 @@ const HomePage = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) navigate("/login");
-    fetch("http://localhost:3001/products?page=1&pageSize=3", {
+    fetch("http://localhost:3001/products?page=0&pageSize=3", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

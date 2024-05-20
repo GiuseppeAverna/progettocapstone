@@ -25,7 +25,6 @@
   flex-direction: column;
   gap: 8px;
   padding-bottom: 16px;
-  justify-content: center;
   width: 80%;
   margin: auto;
 }
@@ -161,6 +160,21 @@
 }
   
 
+/* CART PAGE */
+
+.cart-page {
+  display: flex;
+  gap: 1rem;
+}
+
+.cart-page .card {
+  width: 100%;
+}
+.cart-page .cart-item {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
 
   /* PRODUCT DETAIL PAGE */
   
