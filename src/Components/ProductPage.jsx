@@ -113,7 +113,9 @@ const ProductPage = () => {
                       variant="top"
                       src={product.imageUrl}
                       alt={product.name}
+                      className="card-img-top"
                     />
+
                     <Card.Body>
                       <Card.Title>{product.name}</Card.Title>
                       <Description text={product.description || ""} />
