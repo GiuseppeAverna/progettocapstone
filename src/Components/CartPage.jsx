@@ -39,9 +39,6 @@ const CartPage = () => {
       .then((data) => setCart(data));
   };
 
-  const calculateTotal = () => {
-    return cart.reduce((total, product) => total + product.price, 0);
-  };
   return (
     <>
       <Header />
@@ -67,7 +64,6 @@ const CartPage = () => {
                       </ListGroupItem>
                     ))}
                   </ListGroup>
-                  <p>Totale: €{calculateTotal().toFixed(2)}</p>
                 </div>
                 <OrderSummary cart={cart} />
               </div>

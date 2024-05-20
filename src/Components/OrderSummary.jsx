@@ -6,12 +6,8 @@ const OrderSummary = ({ cart }) => {
   const [loading, setLoading] = useState(false);
 
   const calculateTotal = () => {
-    return cart.reduce(
-      (total, product) => total + product.price * product.quantity,
-      0
-    );
+    return cart.reduce((total, product) => total + product.price, 0);
   };
-
   const handlePay = () => {
     setLoading(true);
     // Simula una richiesta di pagamento asincrona
