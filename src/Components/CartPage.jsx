@@ -3,6 +3,7 @@ import { Alert, ListGroup, ListGroupItem } from "react-bootstrap";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import { FaShoppingCart } from "react-icons/fa";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -120,7 +121,9 @@ const CartPage = () => {
         <h1>Carrello</h1>
         <div className="cart-page">
           {cart.length === 0 ? (
-            <Card>
+            <Card className="empty-cart-message">
+              <FaShoppingCart size={50} />{" "}
+              {/* Visualizza l'icona del carrello */}
               <p>Il carrello è vuoto</p>
             </Card>
           ) : (

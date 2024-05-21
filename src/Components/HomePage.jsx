@@ -36,11 +36,11 @@ const HomePage = () => {
     <>
       <Header />
       <div className="page-content homepage">
-        <section id="about-us" className="my-5 ">
-          <Container>
+        <section className="my-5 ">
+          <Container id="about-us">
             <h2 className="text-center">Chi Siamo</h2>
             <p>
-              Benvenuti su MyShop! Siamo un team appassionato che si impegna a
+              Benvenuti su ALLMIGHT! Siamo un team appassionato che si impegna a
               fornire i migliori prodotti e un'esperienza di shopping
               straordinaria ai nostri clienti.
             </p>
@@ -57,10 +57,10 @@ const HomePage = () => {
         <section id="prodotti-primo-piano" className="pt-5">
           <Container>
             <h2 className="pb-5">Prodotti in primo piano</h2>
-            <Row xs={1} md={3} className="g-4">
+            <div className="homepage products-grid">
               {products.map((product) => (
-                <Col key={product.id}>
-                  <Card>
+                <div key={product.id} className="homepage product-card">
+                  <Card className="homepage card-content">
                     <Card.Img variant="top" src={product.imageUrl} />
                     <Card.Body>
                       <Card.Title>{product.name}</Card.Title>
@@ -70,9 +70,9 @@ const HomePage = () => {
                       <Link to={`/products/${product.id}`}>Vedi dettagli</Link>
                     </Card.Footer>
                   </Card>
-                </Col>
+                </div>
               ))}
-            </Row>
+            </div>
           </Container>
         </section>
       </div>

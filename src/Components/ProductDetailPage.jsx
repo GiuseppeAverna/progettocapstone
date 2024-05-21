@@ -36,7 +36,7 @@ const ProductDetailPage = () => {
       .then((data) => setProduct(data));
   }, [productId]);
 
-  const addToCart = (product) => {
+  const addToCart = () => {
     const accessToken = localStorage.getItem("accessToken");
     const userId = localStorage.getItem("userId");
     if (!accessToken || !userId) navigate("/login");

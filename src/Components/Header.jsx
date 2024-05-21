@@ -10,7 +10,7 @@ const Header = () => {
       <Navbar className="navbar-custom justify-content-center" expand="sm">
         <Container>
           <Navbar.Brand className="text-white" href="/">
-            MyShop
+            ALLMIGHT
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
