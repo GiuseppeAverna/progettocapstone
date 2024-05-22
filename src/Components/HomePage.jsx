@@ -36,44 +36,38 @@ const HomePage = () => {
     <>
       <Header />
       <div className="page-content homepage">
-        <section className="my-5 ">
-          <Container id="about-us">
-            <h2 className="text-center">Chi Siamo</h2>
-            <p>
-              Benvenuti su ALLMIGHT! Siamo un team appassionato che si impegna a
-              fornire i migliori prodotti e un'esperienza di shopping
-              straordinaria ai nostri clienti.
-            </p>
-            <p>
-              La nostra missione è rendere lo shopping online facile,
-              conveniente e divertente per tutti. Ci impegniamo a fornire
-              un'ampia selezione di prodotti di alta qualità a prezzi
-              accessibili.
-            </p>
-            <p>Grazie per averci scelto e buono shopping!</p>
-          </Container>
+        <section className="about-us">
+          <h2 className="text-center">Chi Siamo</h2>
+          <p>
+            Benvenuti su ALLMIGHT! Siamo un team appassionato che si impegna a
+            fornire i migliori prodotti e un'esperienza di shopping
+            straordinaria ai nostri clienti.
+          </p>
+          <p>
+            La nostra missione è rendere lo shopping online facile, conveniente
+            e divertente per tutti. Ci impegniamo a fornire un'ampia selezione
+            di prodotti di alta qualità a prezzi accessibili.
+          </p>
+          <p>Grazie per averci scelto e buono shopping!</p>
         </section>
-
-        <section id="prodotti-primo-piano" className="pt-5">
-          <Container>
-            <h2 className="pb-5">Prodotti in primo piano</h2>
-            <div className="homepage products-grid">
-              {products.map((product) => (
-                <div key={product.id} className="homepage product-card">
-                  <Card className="homepage card-content">
-                    <Card.Img variant="top" src={product.imageUrl} />
-                    <Card.Body>
-                      <Card.Title>{product.name}</Card.Title>
-                      <Card.Text>{product.description}</Card.Text>
-                    </Card.Body>
-                    <Card.Footer>
-                      <Link to={`/products/${product.id}`}>Vedi dettagli</Link>
-                    </Card.Footer>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </Container>
+        <h2>Prodotti in primo piano</h2>
+        <section className="prodotti-primo-piano">
+          <div className="homepage products-grid">
+            {products.map((product) => (
+              <div key={product.id} className="homepage product-card">
+                <Card className="homepage card-content">
+                  <Card.Img variant="top" src={product.imageUrl} />
+                  <Card.Body className="no-padding">
+                    <Card.Title>{product.name}</Card.Title>
+                    <Card.Text>{product.description}</Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link to={`/products/${product.id}`}>Vedi dettagli</Link>
+                  </Card.Footer>
+                </Card>
+              </div>
+            ))}
+          </div>
         </section>
       </div>
     </>

@@ -19,6 +19,7 @@ const ProductDetailPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
 
@@ -34,6 +35,16 @@ const ProductDetailPage = () => {
     })
       .then((response) => response.json())
       .then((data) => setProduct(data));
+
+    fetch(`http://localhost:3001/products/${productId}/reviews`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setReviews(data));
   }, [productId]);
 
   const addToCart = () => {
@@ -72,13 +83,15 @@ const ProductDetailPage = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert(
-          `Grazie per aver lasciato una recensione per l'articolo ${
-            product.name
-          }😊! Hai valutato l'articolo con ${rating} ${
-            rating === 1 ? "stella" : "stelle"
-          }.`
-        );
+        fetch(`http://localhost:3001/products/${productId}/reviews`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + accessToken,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => setReviews(data));
       });
   };
 
@@ -89,9 +102,9 @@ const ProductDetailPage = () => {
   return (
     <>
       <Header />
-      <div className="page-content productpage">
-        <Container className="my-4 d-flex flex-column flex-md-row justify-content-around align-items-center">
-          <Card style={{ width: "18rem" }}>
+      <div className="page-content productpage detail">
+        <div>
+          <Card>
             <Card.Img variant="top" src={product.imageUrl} alt={product.name} />
             <Card.Body>
               <Card.Title>{product.name}</Card.Title>
@@ -139,39 +152,52 @@ const ProductDetailPage = () => {
               </Row>
             </Card.Body>
           </Card>
-          <Form onSubmit={submitReview} className="form-review">
-            <div className="review-input">
-              <h2>Hai già ricevuto il prodotto? Scrivi una recensione!</h2>
-              <Form.Group controlId="reviewForm.ControlInput1">
-                <Form.Label className="mb-0">Valutazione</Form.Label>
-                <div>
-                  <Rating
-                    onClick={(rate) => setRating(rate)}
-                    ratingValue={rating}
-                    size={20}
-                    fillColor="gold"
-                    emptyColor="gray"
-                  />
-                  <span style={{ marginLeft: "1rem" }}>
-                    {rating} {rating === 1 ? "stella" : "stelle"}
-                  </span>
-                </div>
-              </Form.Group>
-              <Form.Group controlId="reviewForm.ControlTextarea1">
-                <Form.Label className="pt-3">La tua recensione</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows="3"
-                  value={review}
-                  onChange={(e) => setReview(e.target.value)}
-                />
-              </Form.Group>
+        </div>
+        <div className="reviews-section">
+          <h2>Recensioni dei clienti</h2>
+          {reviews.map((review) => (
+            <div key={review.id} className="review-card">
+              <Rating
+                className="rating-stars"
+                initialValue={review.rating}
+                readonly
+              />
+              <p>{review.reviewText}</p>
             </div>
-            <Button variant="primary" type="submit">
-              Invia recensione
-            </Button>
-          </Form>
-        </Container>
+          ))}
+        </div>
+        <Form onSubmit={submitReview} className="form-review">
+          <div className="review-input">
+            <h2>Hai già ricevuto il prodotto? Scrivi una recensione!</h2>
+            <Form.Group controlId="reviewForm.ControlInput1">
+              <Form.Label className="mb-0">Valutazione</Form.Label>
+              <div className="review-stars-counter">
+                <Rating
+                  onClick={(rate) => setRating(rate)}
+                  ratingValue={rating}
+                  size={20}
+                  fillColor="gold"
+                  emptyColor="gray"
+                />
+                <span>
+                  {rating} {rating === 1 ? "stella" : "stelle"}
+                </span>
+              </div>
+            </Form.Group>
+            <Form.Group controlId="reviewForm.ControlTextarea1">
+              <Form.Label className="pt-3">La tua recensione</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows="3"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+              />
+            </Form.Group>
+          </div>
+          <Button variant="primary" type="submit">
+            Invia recensione
+          </Button>
+        </Form>
       </div>
     </>
   );

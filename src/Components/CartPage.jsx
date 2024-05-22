@@ -122,9 +122,7 @@ const CartPage = () => {
         <div className="cart-page">
           {cart.length === 0 ? (
             <Card className="empty-cart-message">
-              <FaShoppingCart size={50} />{" "}
-              {/* Visualizza l'icona del carrello */}
-              <p>Il carrello è vuoto</p>
+              <FaShoppingCart size={50} /> <p>Il carrello è vuoto</p>
             </Card>
           ) : (
             <ListGroup>
@@ -142,7 +140,7 @@ const CartPage = () => {
             </ListGroup>
           )}
           <Card>
-            <Card.Body>
+            <Card.Body className="no-padding">
               <Card.Title>Riepilogo ordine</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 Totale: €{calculateTotal().toFixed(2)}
@@ -150,13 +148,16 @@ const CartPage = () => {
               <Button
                 variant="primary"
                 onClick={() => {
-                  handlePay();
-                  clearCart();
+                  if (cart.length > 0) {
+                    handlePay();
+                    clearCart();
+                  }
                 }}
-                disabled={loading}
+                disabled={loading || cart.length === 0}
               >
                 {loading ? "Pagamento in corso..." : "Paga"}
               </Button>
+
               {orderStatus && <Alert variant="info">{orderStatus}</Alert>}
             </Card.Body>
           </Card>

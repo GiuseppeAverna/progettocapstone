@@ -1,6 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, BrowserRouter, Routes } from "react-router-dom";
+import { Route, BrowserRouter, Routes, Navigate } from "react-router-dom";
 import HomePage from "./Components/HomePage";
 import ProductPage from "./Components/ProductPage";
 import CartPage from "./Components/CartPage";
@@ -17,6 +17,7 @@ function App() {
       <div className="website-container">
         <ChatSupport />
         <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route element={<Login />} path="/login" />
           <Route element={<Register />} path="/register" />
           <Route element={<HomePage />} path="/home" />
