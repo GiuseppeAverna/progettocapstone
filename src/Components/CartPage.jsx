@@ -78,7 +78,7 @@ const CartPage = () => {
       .catch((error) => {
         console.error("Problema con la fetch ", error);
       });
-  }, []);
+  }, [navigate]);
 
   const removeFromCart = (productId) => {
     const accessToken = localStorage.getItem("accessToken");

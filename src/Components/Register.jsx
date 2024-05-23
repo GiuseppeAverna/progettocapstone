@@ -56,10 +56,10 @@ const Register = () => {
     <>
       <div className="page-content homepage registerpage">
         <div className="login-page">
-          <img src={logo} alt="AllMight Logo" className="logo" />
-          <div className="login-form">
+          <div>
+            <img src={logo} alt="AllMight Logo" className="logo" />
             <h2>Registrati</h2>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className="register-form">
               <Form.Group controlId="name">
                 <Form.Label>Nome:</Form.Label>
                 <Form.Control

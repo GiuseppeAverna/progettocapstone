@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Card, Button, Row, Col, Form } from "react-bootstrap";
+import { Card, Button, Row, Col, Form } from "react-bootstrap";
 import {
   FacebookShareButton,
   WhatsappShareButton,
@@ -45,7 +45,7 @@ const ProductDetailPage = () => {
     })
       .then((response) => response.json())
       .then((data) => setReviews(data));
-  }, [productId]);
+  }, [productId, navigate]);
 
   const addToCart = () => {
     const accessToken = localStorage.getItem("accessToken");

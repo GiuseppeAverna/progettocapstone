@@ -77,10 +77,10 @@ const Login = () => {
     <>
       <div className="page-content homepage loginpage">
         <div className="login-page">
-          <img src={logo} alt="AllMight Logo" className="logo" />
-          <div className="login-form">
+          <div>
+            <img src={logo} alt="AllMight Logo" className="logo" />
             <h2>Accedi</h2>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className="login-form">
               <Form.Group controlId="email">
                 <Form.Label>Email:</Form.Label>
                 <Form.Control

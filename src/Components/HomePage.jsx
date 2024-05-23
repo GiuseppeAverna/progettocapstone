@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
-import { Row, Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./style.css";
 import Header from "./Header";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,7 +10,7 @@ const HomePage = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) navigate("/login");
-    fetch("http://localhost:3001/products?page=0&pageSize=3", {
+    fetch("http://localhost:3001/products?page=0&pageSize=5", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +29,7 @@ const HomePage = () => {
       .catch((error) => {
         console.error("There was a problem with the fetch operation: ", error);
       });
-  }, []);
+  }, [navigate]);
 
   return (
     <>
