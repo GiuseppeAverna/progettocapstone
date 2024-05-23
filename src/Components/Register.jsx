@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
+import logo from "../assets/images/allmight-high-resolution-logo-transparent.png";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -53,8 +54,9 @@ const Register = () => {
 
   return (
     <>
-      <div className="page-content homepage">
+      <div className="page-content homepage registerpage">
         <div className="login-page">
+          <img src={logo} alt="AllMight Logo" className="logo" />
           <div className="login-form">
             <h2>Registrati</h2>
             <Form onSubmit={handleSubmit}>

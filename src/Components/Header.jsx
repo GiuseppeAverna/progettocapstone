@@ -1,11 +1,11 @@
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { IoMdLogOut } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/images/allmight-high-resolution-logo-transparenttext.png";
 
 const Header = () => {
   const name = localStorage.getItem("name");
@@ -24,7 +24,9 @@ const Header = () => {
     <>
       <Navbar className="navbar-custom" expand="sm">
         <span className="text-white grid-name" href="/">
-          ALLMIGHT
+          <Navbar.Brand href="/home">
+            <img src={logo} alt="AllMight Logo" className="navbar-logo" />
+          </Navbar.Brand>
         </span>
 
         {name && surname && (

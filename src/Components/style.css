@@ -35,6 +35,31 @@
   width: 100%;
   margin: auto;
 }
+.loginpage .logo {
+
+  position: absolute;
+  top: 30px; 
+  left: 500px; 
+  height: 300px; 
+  width: auto; 
+}
+.registerpage .logo {
+
+  position: absolute;
+  top: 30px; 
+  left: 500px; 
+  height: 300px; 
+  width: auto; 
+}
+
+.navbar-logo {
+  top: 30px; 
+  height: 22px; 
+  width: 100%; 
+  
+}
+
+
 .homepage {
   font-size: 18px; 
   font-weight: bold; 
@@ -42,15 +67,16 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+
 .navbar-custom {
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    display: grid;
-    grid-template-areas: 'name menu user' 'empty empty empty';
-    justify-content: space-between;
-    gap: 0 8px;
-    padding: 8px;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  display: grid;
+  grid-template-areas: 'name menu user' 'empty empty empty';
+  justify-content: space-between;
+  gap: 0 8px;
+  padding: 8px;
 }
 
 .navbar-collapse {
@@ -86,19 +112,19 @@
 
 
 .navbar-custom, .footer-custom {
-    background-image: linear-gradient(to right, #2ba7d495 40%, #2f2f2f 70%);
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 20px; 
-    font-weight: bold; 
-    color: white; 
-    
+  background-image: linear-gradient(to right, #2ba7d495 40%, #2f2f2f 70%);
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px; 
+  font-weight: bold; 
+  color: white; 
+  
 }
 
 .navbar-custom .nav-link {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 22px; 
-    font-weight: bold; 
-    color: white; 
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 22px; 
+  font-weight: bold; 
+  color: white; 
 }
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -126,7 +152,7 @@
   box-shadow: 0 2px 4px 0 rgba(43, 167, 212, 0.7);
   transform: translateY(1px);
   color: #2f2f2f;
-
+  
 }
 
 .navbar .dropdown-menu {
@@ -175,6 +201,11 @@
 
 .about-us {
   background-color: rgba(255, 255, 255, 0.514); 
+  color:  rgb(8, 57, 148);
+  padding: 4px;
+}
+.primo-piano {
+  background-color: rgba(255, 255, 255, 0.451); 
   color:  rgb(8, 57, 148);
   padding: 4px;
 }
@@ -379,6 +410,10 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation: empty-cart-animation 1s ease-out;
 }
+.cart-title{
+background-color: rgba(255, 255, 255, 0.514); 
+color:  rgb(8, 57, 148);
+}
 
 
 
@@ -460,10 +495,10 @@
     border: 1px solid #eaeaea;
     border-radius: 4px;
     padding: 8px;
-    resize: vertical; /* Permette all'utente di ridimensionare la textarea verticalmente */
+    resize: vertical; 
   }
   
-  /* Stili per i pulsanti e le valutazioni */
+  
   .button-primary {
     background-color: #0056b3;
     color: #ffffff;
@@ -486,6 +521,11 @@
   
   .rating-stars svg {
     fill: gold;
+  }
+  .customer-reviews {
+    background-color: rgba(255, 255, 255, 0.514); 
+  color:  rgb(8, 57, 148);
+ 
   }
   
   

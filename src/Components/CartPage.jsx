@@ -118,7 +118,7 @@ const CartPage = () => {
     <>
       <Header />
       <div className="page-content">
-        <h1>Carrello</h1>
+        <h1 className="cart-title">Carrello</h1>
         <div className="cart-page">
           {cart.length === 0 ? (
             <Card className="empty-cart-message">

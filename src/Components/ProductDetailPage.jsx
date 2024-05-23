@@ -153,19 +153,21 @@ const ProductDetailPage = () => {
             </Card.Body>
           </Card>
         </div>
-        <div className="reviews-section">
-          <h2>Recensioni dei clienti</h2>
-          {reviews.map((review) => (
-            <div key={review.id} className="review-card">
-              <Rating
-                className="rating-stars"
-                initialValue={review.rating}
-                readonly
-              />
-              <p>{review.reviewText}</p>
-            </div>
-          ))}
-        </div>
+        <Card className="reviews-section">
+          <Card.Body>
+            <h2 className="customer-reviews">Recensioni dei clienti</h2>
+            {reviews.map((review) => (
+              <div key={review.id} className="review-card mb-3">
+                <Rating
+                  className="rating-stars"
+                  initialValue={review.rating}
+                  readonly
+                />
+                <p>{review.reviewText}</p>
+              </div>
+            ))}
+          </Card.Body>
+        </Card>
         <Form onSubmit={submitReview} className="form-review">
           <div className="review-input">
             <h2>Hai già ricevuto il prodotto? Scrivi una recensione!</h2>

@@ -50,7 +50,7 @@ const HomePage = () => {
           </p>
           <p>Grazie per averci scelto e buono shopping!</p>
         </section>
-        <h2>Prodotti in primo piano</h2>
+        <h2 className="primo-piano">Prodotti in primo piano</h2>
         <section className="prodotti-primo-piano">
           <div className="homepage products-grid">
             {products.map((product) => (
