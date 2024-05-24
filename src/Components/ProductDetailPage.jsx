@@ -172,7 +172,7 @@ const ProductDetailPage = () => {
           <div className="review-input">
             <h2>Hai già ricevuto il prodotto? Scrivi una recensione!</h2>
             <Form.Group controlId="reviewForm.ControlInput1">
-              <Form.Label className="mb-0">Valutazione</Form.Label>
+              <Form.Label className="mb-0 text-black">Valutazione</Form.Label>
               <div className="review-stars-counter">
                 <Rating
                   onClick={(rate) => setRating(rate)}
@@ -187,7 +187,9 @@ const ProductDetailPage = () => {
               </div>
             </Form.Group>
             <Form.Group controlId="reviewForm.ControlTextarea1">
-              <Form.Label className="pt-3">La tua recensione</Form.Label>
+              <Form.Label className="pt-3 text-black">
+                La tua recensione
+              </Form.Label>
               <Form.Control
                 as="textarea"
                 rows="3"
