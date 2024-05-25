@@ -9,6 +9,7 @@ import Footer from "./Components/Footer";
 import ChatSupport from "./Components/ChatSupport";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+import { PaymentPage } from "./Components/PaymentPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route element={<ProductPage />} path="/products" />
           <Route element={<CartPage />} path="/cart" />
           <Route element={<ProductDetailPage />} path="/products/:productId" />
+          <Route element={<PaymentPage />} path="/payment" />
         </Routes>
         <Footer />
       </div>

@@ -569,6 +569,29 @@ color:  rgb(8, 57, 148);
   
 }
 
+
+.footer-custom h5 {
+  font-weight: bold;
+
+}
+
+.footer-custom p {
+  margin-bottom: 0px;
+}
+
+.navbar-logo {
+  max-width: 150px; 
+}
+
+.social-icons a {
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #555;
+}
+
+
 /* chat  */
 
 .chat-button {
@@ -673,6 +696,54 @@ color:  rgb(8, 57, 148);
   border-radius: 5px; 
 }
 
+
+/* PAYMANTPAGE */
+.payment-form-container {
+  max-width: 700px; 
+  margin: 100px auto; 
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+
+
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-element {
+  margin-bottom: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pay-button {
+  background-color: #00c853;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pay-button:disabled {
+  background-color: #ccc;
+}
+
+.payment-form-container .input-field {
+  margin-bottom: 50px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
 
 
 

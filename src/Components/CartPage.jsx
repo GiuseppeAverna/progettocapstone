@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Alert, ListGroup, ListGroupItem } from "react-bootstrap";
-import { Button, Card } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Alert, ListGroup, ListGroupItem, Button, Card } from "react-bootstrap";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header";
 import { FaShoppingCart } from "react-icons/fa";
 
 const CartPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [cart, setCart] = useState([]);
   const [orderStatus, setOrderStatus] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,49 +14,31 @@ const CartPage = () => {
   const calculateTotal = () => {
     return cart.reduce((total, product) => total + product.price, 0);
   };
+
   const handlePay = () => {
     setLoading(true);
-    // Simula una richiesta di pagamento asincrona
     setTimeout(() => {
       setLoading(false);
-      setOrderStatus(
-        "Il tuo ordine è stato ricevuto e sta per essere elaborato."
-      );
-    }, 2000);
+      navigate("/payment", { state: { total: calculateTotal() } });
+    }, 1000);
   };
 
   useEffect(() => {
     let timer;
-    if (
-      orderStatus ===
-      "Il tuo ordine è stato ricevuto e sta per essere elaborato."
-    ) {
+    if (orderStatus) {
       timer = setTimeout(() => {
-        setOrderStatus("Il tuo ordine è in preparazione.");
-      }, 5000);
+        setOrderStatus("");
+      }, 3000);
     }
     return () => clearTimeout(timer);
   }, [orderStatus]);
 
   useEffect(() => {
-    let timer;
-    if (orderStatus === "Il tuo ordine è in preparazione.") {
-      timer = setTimeout(() => {
-        setOrderStatus("Il tuo ordine è in viaggio.");
-      }, 5000);
+    if (location.state?.paymentSuccess) {
+      setOrderStatus("Pagamento effettuato con successo!");
+      clearCart();
     }
-    return () => clearTimeout(timer);
-  }, [orderStatus]);
-
-  useEffect(() => {
-    let timer;
-    if (orderStatus === "Il tuo ordine è in viaggio.") {
-      timer = setTimeout(() => {
-        setOrderStatus("Il tuo ordine è stato consegnato.");
-      }, 5000);
-    }
-    return () => clearTimeout(timer);
-  }, [orderStatus]);
+  }, [location]);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -117,7 +99,7 @@ const CartPage = () => {
   return (
     <>
       <Header />
-      <div className="page-content">
+      <div className="page-content ">
         <h1 className="cart-title">Carrello</h1>
         <div className="cart-page">
           {cart.length === 0 ? (
@@ -147,18 +129,21 @@ const CartPage = () => {
               </Card.Subtitle>
               <Button
                 variant="primary"
-                onClick={() => {
-                  if (cart.length > 0) {
-                    handlePay();
-                    clearCart();
-                  }
-                }}
+                onClick={handlePay}
                 disabled={loading || cart.length === 0}
               >
-                {loading ? "Pagamento in corso..." : "Paga"}
+                {loading
+                  ? "Stai per essere reindirizzato alla pagina di pagamento..."
+                  : "Paga"}
               </Button>
-
-              {orderStatus && <Alert variant="info">{orderStatus}</Alert>}
+              {orderStatus && (
+                <Alert
+                  variant="success"
+                  className="payment-success-alert custom-alert"
+                >
+                  <i className="fas fa-check-circle"></i> {orderStatus}
+                </Alert>
+              )}
             </Card.Body>
           </Card>
         </div>

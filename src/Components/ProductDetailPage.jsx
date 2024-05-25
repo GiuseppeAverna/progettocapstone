@@ -14,6 +14,8 @@ import {
 import { Rating } from "react-simple-star-rating";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { FaShoppingCart, FaStar } from "react-icons/fa";
 
 const ProductDetailPage = () => {
   const navigate = useNavigate();
@@ -60,7 +62,16 @@ const ProductDetailPage = () => {
     })
       .then((response) => response.json())
       .then(() => {
-        alert("Prodotto aggiunto al carrello!");
+        toast.success("Prodotto aggiunto al carrello!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          icon: <FaShoppingCart className="text-primary" />,
+        });
       });
   };
 
@@ -91,10 +102,21 @@ const ProductDetailPage = () => {
           },
         })
           .then((response) => response.json())
-          .then((data) => setReviews(data));
+          .then((data) => setReviews(data))
+          .then(() => {
+            toast.success("Recensione inviata con successo!", {
+              position: "top-center",
+              autoClose: 1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              progress: undefined,
+              icon: <FaStar className="text-warning" />,
+            });
+          });
       });
   };
-
   if (!product) {
     return <div>Caricamento in corso...</div>;
   }

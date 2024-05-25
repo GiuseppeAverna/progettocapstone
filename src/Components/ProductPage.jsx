@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Container,
-  Card,
-  Form,
-  FormControl,
-  InputGroup,
-} from "react-bootstrap";
+import { Card, Form, FormControl, InputGroup } from "react-bootstrap";
 import Header from "./Header";
 
 const Description = ({ text }) => {
@@ -42,7 +36,7 @@ const ProductPage = () => {
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) navigate("/login");
-    fetch("http://localhost:3001/products?page=0&pageSize=24", {
+    fetch("http://localhost:3001/products?page=0&pageSize=25", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +45,7 @@ const ProductPage = () => {
     })
       .then((response) => response.json())
       .then((data) => setProducts(data.content));
-  }, []);
+  }, [navigate]);
 
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
   const handleMinPriceChange = (e) => setMinPrice(e.target.value);
