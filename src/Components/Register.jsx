@@ -40,7 +40,7 @@ const Register = () => {
         }
         return response.text();
       })
-      .then((data) => {
+      .then(() => {
         navigate("/login");
       })
       .catch((error) => {
@@ -53,70 +53,68 @@ const Register = () => {
   };
 
   return (
-    <>
-      <div className="page-content homepage registerpage">
-        <div className="login-page">
-          <div>
-            <img src={logo} alt="AllMight Logo" className="logo" />
-            <h2>Registrati</h2>
-            <Form onSubmit={handleSubmit} className="register-form">
-              <Form.Group controlId="name">
-                <Form.Label>Nome:</Form.Label>
-                <Form.Control
-                  className="form-field"
-                  type="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="surname">
-                <Form.Label>Cognome:</Form.Label>
-                <Form.Control
-                  className="form-field"
-                  type="surname"
-                  name="surname"
-                  value={formData.surname}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  className="form-field"
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  className="form-field"
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-              <div className="button-group">
-                <Button variant="primary" type="submit">
-                  Registrati
-                </Button>
-              </div>
-              <div>
-                <Link to={`/login`}>Hai già un account? Accedi</Link>
-              </div>
-            </Form>
-          </div>
+    <div className="page-content homepage registerpage">
+      <div className="register-page">
+        <div>
+          <img src={logo} alt="AllMight Logo" className="logo" />
+          <h2>Registrati</h2>
+          <Form onSubmit={handleSubmit} className="register-form">
+            <Form.Group controlId="name">
+              <Form.Label className="form-label">Nome:</Form.Label>
+              <Form.Control
+                className="form-field"
+                type="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="surname">
+              <Form.Label className="form-label">Cognome:</Form.Label>
+              <Form.Control
+                className="form-field"
+                type="surname"
+                name="surname"
+                value={formData.surname}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label className="form-label">Email:</Form.Label>
+              <Form.Control
+                className="form-field"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label className="form-label">Password:</Form.Label>
+              <Form.Control
+                className="form-field"
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <div className="button-group">
+              <Button variant="primary" type="submit">
+                Registrati
+              </Button>
+            </div>
+            <div>
+              <Link to="/login">Hai già un account? Accedi</Link>
+            </div>
+          </Form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

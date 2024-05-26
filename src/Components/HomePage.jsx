@@ -3,6 +3,8 @@ import { Card } from "react-bootstrap";
 import "./style.css";
 import Header from "./Header";
 import { Link, useNavigate } from "react-router-dom";
+import Footer from "./Footer";
+import ChatSupport from "./ChatSupport";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
+      <ChatSupport />
       <div className="page-content homepage">
         <section className="about-us">
           <h2 className="text-center">Chi Siamo</h2>
@@ -69,6 +72,7 @@ const HomePage = () => {
           </div>
         </section>
       </div>
+      <Footer />
     </>
   );
 };

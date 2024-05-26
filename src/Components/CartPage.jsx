@@ -3,6 +3,8 @@ import { Alert, ListGroup, ListGroupItem, Button, Card } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header";
 import { FaShoppingCart } from "react-icons/fa";
+import Footer from "./Footer";
+import ChatSupport from "./ChatSupport";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -99,6 +101,7 @@ const CartPage = () => {
   return (
     <>
       <Header />
+      <ChatSupport />
       <div className="page-content ">
         <h1 className="cart-title">Carrello</h1>
         <div className="cart-page">
@@ -148,6 +151,7 @@ const CartPage = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

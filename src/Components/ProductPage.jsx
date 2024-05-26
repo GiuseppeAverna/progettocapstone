@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card, Form, FormControl, InputGroup } from "react-bootstrap";
 import Header from "./Header";
+import Footer from "./Footer";
+import ChatSupport from "./ChatSupport";
 
 const Description = ({ text }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -61,6 +63,7 @@ const ProductPage = () => {
   return (
     <>
       <Header />
+      <ChatSupport />
       <div className="page-content productpage">
         <Form className="products-form">
           <InputGroup>
@@ -119,6 +122,7 @@ const ProductPage = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

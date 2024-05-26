@@ -9,6 +9,8 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "./Header";
 import { Button, Spinner } from "react-bootstrap";
+import Footer from "./Footer";
+import ChatSupport from "./ChatSupport";
 
 const stripePromise = loadStripe(
   "pk_test_51PCP2dP5JEi1ikwJJM70jIB1ri1iqhAHUo9MfjoOpiuPn3orSCnvPCiLrdcIhk0DnL3KmGOubQK9F3usXSjRwqLG00F82Roi61"
@@ -52,6 +54,7 @@ const PaymentForm = ({ total }) => {
   return (
     <>
       <Header />
+      <ChatSupport />
       <div className="payment-form-container">
         <form onSubmit={handleSubmit} className="payment-form">
           <h2>Dettagli di Pagamento</h2>
@@ -104,6 +107,7 @@ const PaymentForm = ({ total }) => {
           </Button>
         </form>
       </div>
+      <Footer />
     </>
   );
 };

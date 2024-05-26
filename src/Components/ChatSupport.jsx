@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 
 const ChatSupport = () => {
@@ -9,7 +9,7 @@ const ChatSupport = () => {
   const supportResponses = [
     "Ciao, come possiamo aiutarti? Fai una domanda! 😊",
     "Abbiamo preso in considerazione la tua richiesta, ti risponderemo nel più breve tempo possibile!😁",
-    "Ti ringraziamo in anticipo per la tua pazienza, nell'attesa puoi usufruire del notro servizio clienti al numero 📞+3914429763",
+    "Ti ringraziamo in anticipo per la tua pazienza, nell'attesa puoi usufruire del nostro servizio clienti al numero 📞+3914429763",
   ];
   const messagesEndRef = useRef(null);
   const textAreaRef = useRef(null);
@@ -35,7 +35,6 @@ const ChatSupport = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(message);
     setMessages([...messages, { text: message, user: "you" }]);
     setMessage("");
     setTimeout(() => {

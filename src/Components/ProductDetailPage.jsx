@@ -14,8 +14,10 @@ import {
 import { Rating } from "react-simple-star-rating";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { FaShoppingCart, FaStar } from "react-icons/fa";
+import Footer from "./Footer";
+import ChatSupport from "./ChatSupport";
 
 const ProductDetailPage = () => {
   const navigate = useNavigate();
@@ -124,6 +126,7 @@ const ProductDetailPage = () => {
   return (
     <>
       <Header />
+      <ChatSupport />
       <div className="page-content productpage detail">
         <div>
           <Card>
@@ -225,6 +228,7 @@ const ProductDetailPage = () => {
           </Button>
         </Form>
       </div>
+      <Footer />
     </>
   );
 };
