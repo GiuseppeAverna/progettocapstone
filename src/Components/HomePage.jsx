@@ -9,9 +9,11 @@ import ChatSupport from "./ChatSupport";
 const HomePage = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) navigate("/login");
+
     fetch("http://localhost:3001/products?page=0&pageSize=5", {
       method: "GET",
       headers: {
@@ -63,8 +65,13 @@ const HomePage = () => {
                     <Card.Title>{product.name}</Card.Title>
                     <Card.Text>{product.description}</Card.Text>
                   </Card.Body>
-                  <Card.Footer>
-                    <Link to={`/products/${product.id}`}>Vedi dettagli</Link>
+                  <Card.Footer className="card-footer">
+                    <Link
+                      to={`/products/${product.id}`}
+                      className="details-link"
+                    >
+                      Vedi dettagli
+                    </Link>
                   </Card.Footer>
                 </Card>
               </div>

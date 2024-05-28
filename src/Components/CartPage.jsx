@@ -103,7 +103,10 @@ const CartPage = () => {
       <Header />
       <ChatSupport />
       <div className="page-content ">
-        <h1 className="cart-title">Carrello</h1>
+        <h1 className="cart-title-container">
+          <div className="cart-title">Carrello</div>
+        </h1>
+
         <div className="cart-page">
           {cart.length === 0 ? (
             <Card className="empty-cart-message">
@@ -124,16 +127,15 @@ const CartPage = () => {
               ))}
             </ListGroup>
           )}
-          <Card>
-            <Card.Body className="no-padding">
-              <Card.Title>Riepilogo ordine</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Totale: €{calculateTotal().toFixed(2)}
-              </Card.Subtitle>
+          <Card className="order-summary">
+            <Card.Header>Riepilogo ordine</Card.Header>
+            <Card.Body>
+              <Card.Title>Totale: €{calculateTotal().toFixed(2)}</Card.Title>
               <Button
                 variant="primary"
                 onClick={handlePay}
                 disabled={loading || cart.length === 0}
+                className="pay-button"
               >
                 {loading
                   ? "Stai per essere reindirizzato alla pagina di pagamento..."

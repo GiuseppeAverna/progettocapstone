@@ -26,11 +26,10 @@ const PaymentForm = ({ total }) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Gestisci il caso in cui Stripe o gli elementi non sono caricati
       return;
     }
 
-    setLoading(true); // Attiva lo spinner
+    setLoading(true);
 
     const cardElement = elements.getElement(CardElement);
 
@@ -43,11 +42,9 @@ const PaymentForm = ({ total }) => {
       console.log("[error]", error);
       setLoading(false);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
-      // Simula un ritardo di 1 secondo prima del reindirizzamento
       setTimeout(() => {
         navigate("/cart", { state: { paymentSuccess: true } });
-        setLoading(false); // Disattiva lo spinner
+        setLoading(false);
       }, 1000);
     }
   };
